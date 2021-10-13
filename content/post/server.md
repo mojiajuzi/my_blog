@@ -1,7 +1,9 @@
 ---
-title: "Centos中配置Laravel项目部署"
+title: "Centos中部署Laravel项目配置"
 date: 2021-10-13T11:37:06+08:00
 draft: false
+tags: ["服务器","部署"]
+categories: ["服务器"]
 ---
 
 
