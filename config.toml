@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313/"
+baseURL = "http://blog.tsecloud.cn/"
 languageCode = "en"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "我可是要带娃看海贼王的男人"
