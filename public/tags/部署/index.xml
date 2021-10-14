@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>部署 on 我可是要带娃看海贼王的男人</title>
+    <link>http://blog.tsecloud.cn/tags/%E9%83%A8%E7%BD%B2/</link>
+    <description>Recent content in 部署 on 我可是要带娃看海贼王的男人</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 13 Oct 2021 11:37:06 +0800</lastBuildDate><atom:link href="http://blog.tsecloud.cn/tags/%E9%83%A8%E7%BD%B2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos中部署Laravel项目配置</title>
+      <link>http://blog.tsecloud.cn/post/server/</link>
+      <pubDate>Wed, 13 Oct 2021 11:37:06 +0800</pubDate>
+      
+      <guid>http://blog.tsecloud.cn/post/server/</guid>
+      <description>安装以及配置Nginx服务器 安装 1 sudo dnf install nginx 启动 在安装完之后，使用下面两条语句来启动Nginx 1 2 $ sudo systemctl enable nginx $ sudo systemctl start nginx 监测 运行如下的命令来监测</description>
+    </item>
+    
+  </channel>
+</rss>

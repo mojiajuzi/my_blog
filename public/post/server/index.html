@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Centos中部署Laravel项目配置 - 我可是要带娃看海贼王的男人</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="莫金华" /><meta name="description" content="安装以及配置Nginx服务器 安装 1 sudo dnf install nginx 启动 在安装完之后，使用下面两条语句来启动Nginx 1 2 $ sudo systemctl enable nginx $ sudo systemctl start nginx 监测 运行如下的命令来监测" /><meta name="keywords" content="blog, laravel, php, mysql, go" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.88.1 with theme even" />
+
+
+<link rel="canonical" href="http://blog.tsecloud.cn/post/server/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Centos中部署Laravel项目配置" />
+<meta property="og:description" content="安装以及配置Nginx服务器 安装 1 sudo dnf install nginx 启动 在安装完之后，使用下面两条语句来启动Nginx 1 2 $ sudo systemctl enable nginx $ sudo systemctl start nginx 监测 运行如下的命令来监测" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.tsecloud.cn/post/server/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-13T11:37:06+08:00" />
+<meta property="article:modified_time" content="2021-10-13T11:37:06+08:00" />
+
+<meta itemprop="name" content="Centos中部署Laravel项目配置">
+<meta itemprop="description" content="安装以及配置Nginx服务器 安装 1 sudo dnf install nginx 启动 在安装完之后，使用下面两条语句来启动Nginx 1 2 $ sudo systemctl enable nginx $ sudo systemctl start nginx 监测 运行如下的命令来监测"><meta itemprop="datePublished" content="2021-10-13T11:37:06+08:00" />
+<meta itemprop="dateModified" content="2021-10-13T11:37:06+08:00" />
+<meta itemprop="wordCount" content="1337">
+<meta itemprop="keywords" content="服务器,部署," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos中部署Laravel项目配置"/>
+<meta name="twitter:description" content="安装以及配置Nginx服务器 安装 1 sudo dnf install nginx 启动 在安装完之后，使用下面两条语句来启动Nginx 1 2 $ sudo systemctl enable nginx $ sudo systemctl start nginx 监测 运行如下的命令来监测"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Gru</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Gru</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Centos中部署Laravel项目配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-10-13 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"> 服务器 </a>
+            </div>
+          <span class="more-meta"> 约 1337 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装以及配置nginx服务器">安装以及配置Nginx服务器</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#启动">启动</a></li>
+        <li><a href="#监测">监测</a></li>
+        <li><a href="#管理">管理</a></li>
+        <li><a href="#配置">配置</a></li>
+        <li><a href="#laravel项目的简单配置">Laravel项目的简单配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装以及配置mariadb">安装以及配置MariaDB</a>
+      <ul>
+        <li><a href="#安装-1">安装</a></li>
+        <li><a href="#启动-1">启动</a></li>
+        <li><a href="#监测-1">监测</a></li>
+        <li><a href="#管理-1">管理</a></li>
+        <li><a href="#配置-1">配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装以及配置php74">安装以及配置PHP7.4</a>
+      <ul>
+        <li><a href="#配置使用php-fpm">配置使用php-fpm</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装git">安装Git</a>
+      <ul>
+        <li><a href="#安装-2">安装</a></li>
+        <li><a href="#配置-2">配置</a></li>
+        <li><a href="#生成ssh-key">生成ssh key</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装composer">安装Composer</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="安装以及配置nginx服务器">安装以及配置Nginx服务器</h1>
+<h2 id="安装">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo dnf install nginx
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="启动">启动</h2>
+<p>在安装完之后，使用下面两条语句来启动Nginx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ sudo systemctl <span class="nb">enable</span> nginx
+$ sudo systemctl start  nginx
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="监测">监测</h2>
+<p>运行如下的命令来监测Nginx是否正常运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ curl  localhost:80
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="管理">管理</h2>
+<p>当然，我们也可以通过如下的命令来管理Nginx服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ sudo systemctl stop nginx  <span class="c1">#停止服务</span>
+$ sudo systemctl start nginx <span class="c1">#开启服务</span>
+$ sudo systemctl restart nginx <span class="c1">#重启服务</span>
+$ sudo systemctl reload nginx <span class="c1">#重新加载配置</span>
+$ sudo systemctl disable nginx <span class="c1">#禁用nginx开机自启动</span>
+$ sudo systemctl <span class="nb">enable</span> nginx <span class="c1">#开启nginx开机自启动</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置">配置</h2>
+<p>Nginx的配置文件位于<code>/etc/nginx</code>文件夹下面</p>
+<ul>
+<li><code>/etc/nginx/nginx.conf</code>该文件是主配置文件</li>
+<li><code>/etc/nginx/conf.d</code>该文件夹是我们项目的配置文件夹</li>
+</ul>
+<p>Nginx的项目文件夹位于<code>/usr/share/nginx/html</code>目录下，
+我们可以把项目放置于该目录下</p>
+<h2 id="laravel项目的简单配置">Laravel项目的简单配置</h2>
+<p>关于Laravel项目的Nginx配置，你可以查看<a href="https://laravel.com/docs/8.x/deployment#nginx">这个文档</a></p>
+<h1 id="安装以及配置mariadb">安装以及配置MariaDB</h1>
+<h2 id="安装-1">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo dnf install mariadb-server
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="启动-1">启动</h2>
+<p>安装完成之后，我们可以通过如下的语句启动我们的数据库服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo systemctl start mariadb
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="监测-1">监测</h2>
+<p>通过运行如下命令监测数据库服务是否启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo systemctl status mariadb
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="管理-1">管理</h2>
+<p>当然，我们也可以通过如下的命令来管理Nginx服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ sudo systemctl stop mariadb  <span class="c1">#停止服务</span>
+$ sudo systemctl start mariadb <span class="c1">#开启服务</span>
+$ sudo systemctl restart mariadb <span class="c1">#重启服务</span>
+$ sudo systemctl disable mariadb <span class="c1">#禁用mariadb开机自启动</span>
+$ sudo systemctl <span class="nb">enable</span> mariadb <span class="c1">#开启mariadb开机自启动</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置-1">配置</h2>
+<p>运行如下命令进行安全配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo mysql_secure_installation
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we&#39;ll need the current
+password for the root user.  If you&#39;ve just installed MariaDB, and
+you haven&#39;t set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none): 
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+Set root password? [Y/n] y
+New password: 
+Re-enter new password: 
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] y
+ ... Success!
+
+Normally, root should only be allowed to connect from &#39;localhost&#39;.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+ ... Success!
+
+By default, MariaDB comes with a database named &#39;test&#39; that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you&#39;ve completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="安装以及配置php74">安装以及配置PHP7.4</h1>
+<p>由于系统自带的php版本比较老，所以我们要添加新的版本</p>
+<ol>
+<li>
+<p>添加并使用Remi仓库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>列出仓库中的PHP版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">dnf module list php
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>选择自己需要安装的版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">dnf module <span class="nb">enable</span> php:remi-7.4
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装php以及自己需要的php扩展</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">dnf install php php-cli php-common ...
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>检查安装的php版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">php -v
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>检查已经安装的php扩展</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">php -m 
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="配置使用php-fpm">配置使用php-fpm</h2>
+<ol>
+<li>
+<p>安装php-fpm扩展</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">dnf install php-fpm
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>启动php-fpm</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">systemctl start php-fpm
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改php配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/php-fpm.d/www.con
+</code></pre></td></tr></table>
+</div>
+</div><p>将其中的部分配置修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">listen = /run/php-fpm/www.sock
+listen.owner = nginx
+listen.group = nginx
+listen.mode  = 066
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改php.ini文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/php.ini
+</code></pre></td></tr></table>
+</div>
+</div><p>将其中的部分参数修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">date.timezone = Asia/Shanghai
+cgi.fix_pathinfo=0
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改www.conf文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/php-fpm.d/www.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>取消下面的注释</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">security.time_extensions = .php .php3 .php4 .php5 .php7
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h1 id="安装git">安装Git</h1>
+<h2 id="安装-2">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">yum install git
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置-2">配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git config --global user.name <span class="s2">&#34;Your Name&#34;</span>
+git config --global user.email <span class="s2">&#34;youremail@domain.com&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="生成ssh-key">生成ssh key</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">ssh-keygen -o
+</code></pre></td></tr></table>
+</div>
+</div><p>将生成的key添加到你的代码仓库账号，就可以直接拉取代码了</p>
+<h1 id="安装composer">安装Composer</h1>
+<ol>
+<li>
+<p>下载composer</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">curl -sS https://getcomposer.org/installer | php
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>移动到用户目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mv composer.phar /usr/local/bin/composer
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>添加权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">chmod +x /usr/local/bin/composer
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">莫金华</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+          <a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>
+          </div>
+      <nav class="post-nav">
+        
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:mojinhua@outlook.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/mojiajuzi" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.zhihu.com/people/mo-jin-hua" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://space.bilibili.com/221726228" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://blog.tsecloud.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>莫金华</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

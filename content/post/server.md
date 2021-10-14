@@ -56,6 +56,20 @@ Nginx的项目文件夹位于`/usr/share/nginx/html`目录下，
 ## Laravel项目的简单配置
 关于Laravel项目的Nginx配置，你可以查看[这个文档](https://laravel.com/docs/8.x/deployment#nginx)
 
+1. 设置好项目之后，需要为项目设置特定的权限
+
+   ```shell
+   chmod -R 777 storage
+   chmod -R 777 bootstrap/cache
+   ```
+1. 设置项目的拥有者为nginx
+   ```shell
+   chown nginx:nginx -R /usr/share/nginx/your_project
+   ```
+
+
+
+
 
 # 安装以及配置MariaDB
 

@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Centos中部署Laravel项目配置">
 <meta itemprop="description" content="安装以及配置Nginx服务器 安装 1 sudo dnf install nginx 启动 在安装完之后，使用下面两条语句来启动Nginx 1 2 $ sudo systemctl enable nginx $ sudo systemctl start nginx 监测 运行如下的命令来监测"><meta itemprop="datePublished" content="2021-10-13T11:37:06+08:00" />
 <meta itemprop="dateModified" content="2021-10-13T11:37:06+08:00" />
-<meta itemprop="wordCount" content="1337">
+<meta itemprop="wordCount" content="1386">
 <meta itemprop="keywords" content="服务器,部署," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Centos中部署Laravel项目配置"/>
 <meta name="twitter:description" content="安装以及配置Nginx服务器 安装 1 sudo dnf install nginx 启动 在安装完之后，使用下面两条语句来启动Nginx 1 2 $ sudo systemctl enable nginx $ sudo systemctl start nginx 监测 运行如下的命令来监测"/>
@@ -78,13 +78,13 @@
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
   <ul class="mobile-menu-list">
     <a href="/">
-        <li class="mobile-menu-item">Home</li>
+        <li class="mobile-menu-item">首页</li>
       </a><a href="/post/">
-        <li class="mobile-menu-item">Archives</li>
+        <li class="mobile-menu-item">归档</li>
       </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags</li>
+        <li class="mobile-menu-item">标签</li>
       </a><a href="/categories/">
-        <li class="mobile-menu-item">Categories</li>
+        <li class="mobile-menu-item">分类</li>
       </a>
   </ul>
 
@@ -106,13 +106,13 @@
 <nav class="site-navbar">
   <ul id="menu" class="menu">
     <li class="menu-item">
-        <a class="menu-item-link" href="/">Home</a>
+        <a class="menu-item-link" href="/">首页</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/post/">Archives</a>
+        <a class="menu-item-link" href="/post/">归档</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">Tags</a>
+        <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">Categories</a>
+        <a class="menu-item-link" href="/categories/">分类</a>
       </li>
   </ul>
 </nav>
@@ -132,7 +132,7 @@
         <div class="post-category">
             <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"> 服务器 </a>
             </div>
-          <span class="more-meta"> 约 1337 字 </span>
+          <span class="more-meta"> 约 1386 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
@@ -242,6 +242,32 @@ $ sudo systemctl <span class="nb">enable</span> nginx <span class="c1">#开启ng
 我们可以把项目放置于该目录下</p>
 <h2 id="laravel项目的简单配置">Laravel项目的简单配置</h2>
 <p>关于Laravel项目的Nginx配置，你可以查看<a href="https://laravel.com/docs/8.x/deployment#nginx">这个文档</a></p>
+<ol>
+<li>
+<p>设置好项目之后，需要为项目设置特定的权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">chmod -R <span class="m">777</span> storage
+chmod -R <span class="m">777</span> bootstrap/cache
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>设置项目的拥有者为nginx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">chown nginx:nginx -R /usr/share/nginx/your_project
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
 <h1 id="安装以及配置mariadb">安装以及配置MariaDB</h1>
 <h2 id="安装-1">安装</h2>
 <div class="highlight"><div class="chroma">
@@ -680,7 +706,11 @@ git config --global user.email <span class="s2">&#34;youremail@domain.com&#34;</
           <a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/https/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用acme.sh申请certbot免费https证书</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         
       </nav>
     </footer>
