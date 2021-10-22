@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Centos7.8 安装Redis6 - 我可是要带娃看海贼王的男人</title>
+  <title>使用Mysqldump，crontab 执行数据库定时备份 - 我可是要带娃看海贼王的男人</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="莫金华" /><meta name="description" content="更新系统并安装所需的工具 1 2 yum update -y yum install gcc make wget tcl 下载并编译安装 下载并解压 1 2 3 4 cd /usr/local/src wget https://github.com/redis/redis/archive/6.2-rc2.tar.gz tar xf 6.2-rc2.tar.gz cd redis-6.2-rc2 编译安装 1 2 make test make install 添加用户 1 2 groupadd redis adduser --system -g redis" /><meta name="keywords" content="blog, laravel, php, mysql, go" />
+<meta name="author" content="莫金华" /><meta name="description" content="mariadb-dump指令 在MariaDB 10.4.6中，可以使用mariadb-dump代替mysqldump, mysqldump提供了" /><meta name="keywords" content="blog, laravel, php, mysql, go" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.88.1 with theme even" />
 
 
-<link rel="canonical" href="http://blog.tsecloud.cn/post/redis/" />
+<link rel="canonical" href="http://blog.tsecloud.cn/post/mysqldump/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,20 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Centos7.8 安装Redis6" />
-<meta property="og:description" content="更新系统并安装所需的工具 1 2 yum update -y yum install gcc make wget tcl 下载并编译安装 下载并解压 1 2 3 4 cd /usr/local/src wget https://github.com/redis/redis/archive/6.2-rc2.tar.gz tar xf 6.2-rc2.tar.gz cd redis-6.2-rc2 编译安装 1 2 make test make install 添加用户 1 2 groupadd redis adduser --system -g redis" />
+<meta property="og:title" content="使用Mysqldump，crontab 执行数据库定时备份" />
+<meta property="og:description" content="mariadb-dump指令 在MariaDB 10.4.6中，可以使用mariadb-dump代替mysqldump, mysqldump提供了" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://blog.tsecloud.cn/post/redis/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-10-21T10:53:42+08:00" />
-<meta property="article:modified_time" content="2021-10-21T10:53:42+08:00" />
+<meta property="og:url" content="http://blog.tsecloud.cn/post/mysqldump/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-22T20:31:55+08:00" />
+<meta property="article:modified_time" content="2021-10-22T20:31:55+08:00" />
 
-<meta itemprop="name" content="Centos7.8 安装Redis6">
-<meta itemprop="description" content="更新系统并安装所需的工具 1 2 yum update -y yum install gcc make wget tcl 下载并编译安装 下载并解压 1 2 3 4 cd /usr/local/src wget https://github.com/redis/redis/archive/6.2-rc2.tar.gz tar xf 6.2-rc2.tar.gz cd redis-6.2-rc2 编译安装 1 2 make test make install 添加用户 1 2 groupadd redis adduser --system -g redis"><meta itemprop="datePublished" content="2021-10-21T10:53:42+08:00" />
-<meta itemprop="dateModified" content="2021-10-21T10:53:42+08:00" />
-<meta itemprop="wordCount" content="303">
-<meta itemprop="keywords" content="服务器,部署,Redis," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Centos7.8 安装Redis6"/>
-<meta name="twitter:description" content="更新系统并安装所需的工具 1 2 yum update -y yum install gcc make wget tcl 下载并编译安装 下载并解压 1 2 3 4 cd /usr/local/src wget https://github.com/redis/redis/archive/6.2-rc2.tar.gz tar xf 6.2-rc2.tar.gz cd redis-6.2-rc2 编译安装 1 2 make test make install 添加用户 1 2 groupadd redis adduser --system -g redis"/>
+<meta itemprop="name" content="使用Mysqldump，crontab 执行数据库定时备份">
+<meta itemprop="description" content="mariadb-dump指令 在MariaDB 10.4.6中，可以使用mariadb-dump代替mysqldump, mysqldump提供了"><meta itemprop="datePublished" content="2021-10-22T20:31:55+08:00" />
+<meta itemprop="dateModified" content="2021-10-22T20:31:55+08:00" />
+<meta itemprop="wordCount" content="584">
+<meta itemprop="keywords" content="服务器,部署,maraidb," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用Mysqldump，crontab 执行数据库定时备份"/>
+<meta name="twitter:description" content="mariadb-dump指令 在MariaDB 10.4.6中，可以使用mariadb-dump代替mysqldump, mysqldump提供了"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -125,15 +125,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Centos7.8 安装Redis6</h1>
+      <h1 class="post-title">使用Mysqldump，crontab 执行数据库定时备份</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2021-10-21 </span>
+        <span class="post-time"> 2021-10-22 </span>
         <div class="post-category">
             <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"> 服务器 </a>
             </div>
-          <span class="more-meta"> 约 303 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 584 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -143,73 +143,43 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#更新系统并安装所需的工具">更新系统并安装所需的工具</a></li>
-    <li><a href="#下载并编译安装">下载并编译安装</a></li>
-    <li><a href="#添加用户">添加用户</a></li>
-    <li><a href="#设置数据存放位置">设置数据存放位置</a></li>
-    <li><a href="#创建配置文件">创建配置文件</a></li>
-    <li><a href="#修改配置">修改配置</a></li>
-    <li><a href="#创建系统配置文件">创建系统配置文件</a></li>
-    <li><a href="#redis服务管理">Redis服务管理</a></li>
+    <li><a href="#mariadb-dump指令">mariadb-dump指令</a></li>
+    <li><a href="#备份步骤拆解">备份步骤拆解</a></li>
+    <li><a href="#shell脚本">shell脚本</a></li>
+    <li><a href="#定时任务">定时任务</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="更新系统并安装所需的工具">更新系统并安装所需的工具</h1>
+      <h1 id="mariadb-dump指令">mariadb-dump指令</h1>
+<p>在MariaDB 10.4.6中，可以使用mariadb-dump代替<code>mysqldump</code>,
+<code>mysqldump</code>提供了非常多的可选参数来进行管理。完整的参数可以参考<a href="https://mariadb.com/kb/en/mysqldump/">mysqldump文档</a>。</p>
+<p>一个常用的备份语句如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yum update -y
-yum install gcc make wget tcl
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">mysqldump <span class="o">[</span>options<span class="o">]</span> db_name <span class="o">[</span>tbl_name ...<span class="o">]</span>
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="下载并编译安装">下载并编译安装</h1>
+</div><h1 id="备份步骤拆解">备份步骤拆解</h1>
+<p>对于数据备份来说，我们将其拆解为三个步骤</p>
 <ol>
-<li>下载并解压
+<li>
+<p>连接数据库: 对于数据库的连接而言，我们需要提供数据库地址，用户名，密码三个参数，三个参数对应的指令分别是<code>--host</code>,<code>-u</code>,<code>-p</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd /usr/local/src
-wget https://github.com/redis/redis/archive/6.2-rc2.tar.gz
-tar xf 6.2-rc2.tar.gz
-cd redis-6.2-rc2
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mysqldump --host=localhost -utest -ptext
 </code></pre></td></tr></table>
 </div>
 </div></li>
-<li>编译安装
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">make test
-make install
-</code></pre></td></tr></table>
-</div>
-</div></li>
-</ol>
-<h1 id="添加用户">添加用户</h1>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">groupadd redis
-adduser --system -g redis --no-create-home redis
-</code></pre></td></tr></table>
-</div>
-</div><h1 id="设置数据存放位置">设置数据存放位置</h1>
+<li>
+<p>指定需要备份的数据,除了可以备份数据哭外，还可以备份指定的数据库<code>--databases</code>，数据表<code>-T</code>,<code>--tables</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -217,48 +187,36 @@ adduser --system -g redis --no-create-home redis
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mkdir -p /var/lib/redis
-chown redis: /var/lib/redis
-chmod 770 /var/lib/redis
-</code></pre></td></tr></table>
-</div>
-</div><h1 id="创建配置文件">创建配置文件</h1>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mkdir /etc/redis
-cp /usr/local/src/redis-6.2-rc2/redis.conf /etc/redis/
-</code></pre></td></tr></table>
-</div>
-</div><h1 id="修改配置">修改配置</h1>
-<p>编辑<code>redis.conf</code>文件，修改如下配置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">stop-writes-on-bgsave-error no
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mysqldump --databases=db1,db2
 
-dir /var/lib/redis
+mysqldump --tables=tb1,tb2
 </code></pre></td></tr></table>
 </div>
-</div><p>编辑redis.conf文件，将下面的配置文件修改为</p>
+</div></li>
+<li>
+<p>指定保存的文件格式以及文件路径,默认情况下将保存为<code>.sql</code>的文件形式，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">supervised auto  =&gt; supervised systemd
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mysql options &gt; /your_path/file_name
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="创建系统配置文件">创建系统配置文件</h1>
-<p>在如下目录中添加项目配置文件，<code>/etc/systemd/system/redis.service</code></p>
-<p>修改redis系统文件,添加文件<code>redis.service</code></p>
+</div><p>在Linux操作系统中，我们可以通过管道操作符，将文件保存为我们指定的文件格式，比如<code>gz</code>格式的文件</p>
+</li>
+</ol>
+<p>完成示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mysqldump -utest -ptest --host=localhost --databases=test1 &gt; /data/backup/test1.sql
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="shell脚本">shell脚本</h1>
+<p>我们不能总是手动去执行这条命令，因此我们可以考虑将其写成脚本的形式，然后自动执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -273,33 +231,67 @@ dir /var/lib/redis
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
-[Unit]
-Description=Redis Data Store
-After=network.target
-[Service]
-User=redis
-Group=redis
-ExecStart=/usr/local/bin/redis-server /etc/redis/redis.conf
-ExecStop=/usr/local/bin/redis-cli shutdown
-Restart=always
-[Install]
-WantedBy=multi-user.target
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="c1">#定义备份路径</span>
+<span class="nv">BACKUP_PATH</span><span class="o">=</span>/data/mariadb/mysql
+
+<span class="nv">CURRENT_TIME</span><span class="o">=</span><span class="k">$(</span>date +%Y%m%d_%H%M%S<span class="k">)</span>
+
+<span class="o">[</span>! -d <span class="s2">&#34;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&#34;</span><span class="o">]</span> <span class="o">&amp;&amp;</span> madir -p <span class="s2">&#34;</span><span class="nv">$BACKUP_PATH</span><span class="s2">&#34;</span>
+
+<span class="c1">#定义数据库连接参数</span>
+<span class="nv">HOST</span><span class="o">=</span>localhost
+
+<span class="nv">DB_USER</span><span class="o">=</span><span class="nb">test</span>
+
+<span class="nv">DB_PW</span><span class="o">=</span><span class="nb">pwd</span>
+
+<span class="c1">#设定备份命令</span>
+<span class="nv">DATABASE</span><span class="o">=</span>test1
+
+<span class="c1">#设置文件名</span>
+<span class="nv">FILE_GZ</span><span class="o">=</span><span class="si">${</span><span class="nv">BACKUP_PATH</span><span class="si">}</span>/<span class="nv">$CURRENT_TIME</span>.<span class="nv">$DATABASE</span>.sql.gz
+
+<span class="c1"># 执行命令</span>
+/usr/local/bin/mysqldump -u<span class="si">${</span><span class="nv">DB_USER</span><span class="si">}</span> -p<span class="si">${</span><span class="nv">DB_PW</span><span class="si">}</span> --host<span class="o">=</span><span class="nv">$HOST</span> -q -R --databases <span class="nv">$DATABASE</span> <span class="p">|</span> gzip &gt; <span class="nv">$FILE_GZ</span>
+
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="redis服务管理">Redis服务管理</h1>
+</div><h1 id="定时任务">定时任务</h1>
+<p>给脚本赋予可执行权限</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">chmod u+x mysqlBack.sh
+</code></pre></td></tr></table>
+</div>
+</div><p>设置定时执行时间,具体的时间设置，可以参考这个<a href="https://www.tutorialspoint.com/unix_commands/crontab.htm">crontab</a>使用文档</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">systemctl enable redis
-systemctl start redis
-systemctl status redis
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">crontab -e
+* * * * * mysqlBack.sh
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -313,7 +305,7 @@ systemctl status redis
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2021-10-21
+        2021-10-22
         
     </span>
   </p>
@@ -324,16 +316,12 @@ systemctl status redis
       <div class="post-tags">
           <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
           <a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>
-          <a href="/tags/redis/">Redis</a>
+          <a href="/tags/maraidb/">maraidb</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/mysqldump/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">使用Mysqldump，crontab 执行数据库定时备份</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/https/">
-            <span class="next-text nav-default">使用acme.sh申请certbot免费https证书</span>
+        
+        <a class="next" href="/post/redis/">
+            <span class="next-text nav-default">Centos7.8 安装Redis6</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
