@@ -6,7 +6,16 @@
     <description>Recent content in 服务器 on 我可是要带娃看海贼王的男人</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 13 Oct 2021 23:20:07 +0800</lastBuildDate><atom:link href="http://blog.tsecloud.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Oct 2021 10:53:42 +0800</lastBuildDate><atom:link href="http://blog.tsecloud.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos7.8 安装Redis6</title>
+      <link>http://blog.tsecloud.cn/post/redis/</link>
+      <pubDate>Thu, 21 Oct 2021 10:53:42 +0800</pubDate>
+      
+      <guid>http://blog.tsecloud.cn/post/redis/</guid>
+      <description>更新系统并安装所需的工具 1 2 yum update -y yum install gcc make wget tcl 下载并编译安装 下载并解压 1 2 3 4 cd /usr/local/src wget https://github.com/redis/redis/archive/6.2-rc2.tar.gz tar xf 6.2-rc2.tar.gz cd redis-6.2-rc2 编译安装 1 2 make test make install 添加用户 1 2 groupadd redis adduser --system -g redis</description>
+    </item>
+    
     <item>
       <title>使用acme.sh申请certbot免费https证书</title>
       <link>http://blog.tsecloud.cn/post/https/</link>

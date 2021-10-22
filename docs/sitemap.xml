@@ -3,7 +3,63 @@
   
   <url>
     <loc>http://blog.tsecloud.cn/categories/</loc>
-    <lastmod>2021-10-13T23:20:07+08:00</lastmod>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/post/redis/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/post/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/tags/redis/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/tags/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.tsecloud.cn/tags/%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2021-10-21T10:53:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -16,49 +72,7 @@
   </url>
   
   <url>
-    <loc>http://blog.tsecloud.cn/post/</loc>
-    <lastmod>2021-10-13T23:20:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.tsecloud.cn/tags/</loc>
-    <lastmod>2021-10-13T23:20:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.tsecloud.cn/post/https/</loc>
-    <lastmod>2021-10-13T23:20:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.tsecloud.cn/</loc>
-    <lastmod>2021-10-13T23:20:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.tsecloud.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2021-10-13T23:20:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.tsecloud.cn/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2021-10-13T23:20:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.tsecloud.cn/tags/%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2021-10-13T23:20:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

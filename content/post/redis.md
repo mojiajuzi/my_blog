@@ -1,7 +1,9 @@
 ---
 title: "Centos7.8 安装Redis6"
 date: 2021-10-21T10:53:42+08:00
-draft: true
+draft: false
+tags: ["服务器","部署","Redis"]
+categories: ["服务器"]
 ---
 
 # 更新系统并安装所需的工具
