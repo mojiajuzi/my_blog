@@ -112,7 +112,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   uglyURLs = false          # please keep same with uglyurls setting
 
   # Show language selector for multilingual site.
-  showLanguageSelector = false
+  showLanguageSelector = true
 
   [params.publicCDN]        # load these files from public cdn                          # 启用公共CDN，需自行定义
     enable = true
@@ -153,14 +153,14 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   # You can get your appid and appkey from https://leancloud.cn
   # more info please open https://valine.js.org
   [params.valine]
-    enable = false
-    appId = '你的appId'
-    appKey = '你的appKey'
+    enable = true
+    appId = 'UaB0kt0HdEOYHUVBSX9f2mad-gzGzoHsz'
+    appKey = 'hjb4lhsvPl0vgChGJ76Pxuw4'
     notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
     verify = false # Verification code
     avatar = 'mm'
     placeholder = '说点什么吧...'
-    visitor = false
+    visitor = true
 
   [params.flowchartDiagrams]# see https://blog.olowolo.com/example-site/post/js-flowchart-diagrams/
     enable = false
@@ -177,9 +177,9 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     pagePV = true
 
   [params.reward]                                         # 文章打赏
-    enable = false
-    wechat = "/path/to/your/wechat-qr-code.png"           # 微信二维码
-    alipay = "/path/to/your/alipay-qr-code.png"           # 支付宝二维码
+    enable = true
+    wechat = "/img/reward/wechat.png"           # 微信二维码
+    alipay = "/img/reward/alipay.png"           # 支付宝二维码
 
   [params.social]                                         # 社交链接
     a-email = "mailto:mojinhua@outlook.com"
