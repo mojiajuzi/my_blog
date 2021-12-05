@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>websocket on 我可是要带娃看海贼王的男人</title>
+    <link>http://blog.tsecloud.cn/categories/websocket/</link>
+    <description>Recent content in websocket on 我可是要带娃看海贼王的男人</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 05 Dec 2021 16:21:57 +0800</lastBuildDate><atom:link href="http://blog.tsecloud.cn/categories/websocket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Laravel配合GatewayWorker与微信小程序通过websocket进行语音播报</title>
+      <link>http://blog.tsecloud.cn/post/websocket/</link>
+      <pubDate>Sun, 05 Dec 2021 16:21:57 +0800</pubDate>
+      
+      <guid>http://blog.tsecloud.cn/post/websocket/</guid>
+      <description>最近接受了一个类似于外卖的小程序，需要使用websocket在骑手端进行语音的实时播报 在由于微信小程序切换到后台后无法实时进行通话，这里采用</description>
+    </item>
+    
+  </channel>
+</rss>
