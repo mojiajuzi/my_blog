@@ -109,28 +109,28 @@ categories: ["服务器","websocket","小程序"]
 
 1. 播放提示音
 
-```json
-playNoticeVoice(){
-    //使用语音合成
-    let that =this
-    var plugin = requirePlugin("WechatSI")
-    plugin.textToSpeech({
-      lang: "zh_CN",
-      tts: true,
-      content: "你有新的订单，请及时接单",
-      success: function(res) {
-          that.globalData.localVoice.src=res.filename
-          that.globalData.localVoice.play()
-          that.globalData.localVoice.onEnded(function(){
-              that.playNoVoice()
-          })
-      },
-      fail: function(res) {
-          
-      }
-  })  
-}
-```
+   ```json
+   playNoticeVoice(){
+       //使用语音合成
+       let that =this
+       var plugin = requirePlugin("WechatSI")
+       plugin.textToSpeech({
+         lang: "zh_CN",
+         tts: true,
+         content: "你有新的订单，请及时接单",
+         success: function(res) {
+             that.globalData.localVoice.src=res.filename
+             that.globalData.localVoice.play()
+             that.globalData.localVoice.onEnded(function(){
+                 that.playNoVoice()
+             })
+         },
+         fail: function(res) {
+             
+         }
+     })  
+   }
+   ```
 
 ## 后端
 后端使用`Laravel`框架并配合`GatewayWorker`以及`GatewayClient`开启websocket服务
