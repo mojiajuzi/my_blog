@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>maraidb on 我可是要带娃看海贼王的男人</title>
+    <link>http://blog.tsecloud.cn/tags/maraidb/</link>
+    <description>Recent content in maraidb on 我可是要带娃看海贼王的男人</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 22 Oct 2021 20:31:55 +0800</lastBuildDate><atom:link href="http://blog.tsecloud.cn/tags/maraidb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Mysqldump，crontab 执行数据库定时备份</title>
+      <link>http://blog.tsecloud.cn/post/mysqldump/</link>
+      <pubDate>Fri, 22 Oct 2021 20:31:55 +0800</pubDate>
+      
+      <guid>http://blog.tsecloud.cn/post/mysqldump/</guid>
+      <description>mariadb-dump指令 在MariaDB 10.4.6中，可以使用mariadb-dump代替mysqldump, mysqldump提供了</description>
+    </item>
+    
+  </channel>
+</rss>

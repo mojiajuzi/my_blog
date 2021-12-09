@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用acme.sh申请certbot免费https证书 - 我可是要带娃看海贼王的男人</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="莫金华" /><meta name="description" content="安装acme.sh到用户目录 1 curl https://get.acme.sh | sh -s email=my@example.com 设置别名 1 alias acme.sh=~/.acme.sh/acme.sh 生成证书，由于我已经运行了一个项目，直接让读取nginx的配置文件来生成证书 1 acme.sh --issue -d" /><meta name="keywords" content="blog, laravel, php, mysql, go" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.88.1 with theme even" />
+
+
+<link rel="canonical" href="http://blog.tsecloud.cn/post/https/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用acme.sh申请certbot免费https证书" />
+<meta property="og:description" content="安装acme.sh到用户目录 1 curl https://get.acme.sh | sh -s email=my@example.com 设置别名 1 alias acme.sh=~/.acme.sh/acme.sh 生成证书，由于我已经运行了一个项目，直接让读取nginx的配置文件来生成证书 1 acme.sh --issue -d" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.tsecloud.cn/post/https/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-13T23:20:07+08:00" />
+<meta property="article:modified_time" content="2021-10-13T23:20:07+08:00" />
+
+<meta itemprop="name" content="使用acme.sh申请certbot免费https证书">
+<meta itemprop="description" content="安装acme.sh到用户目录 1 curl https://get.acme.sh | sh -s email=my@example.com 设置别名 1 alias acme.sh=~/.acme.sh/acme.sh 生成证书，由于我已经运行了一个项目，直接让读取nginx的配置文件来生成证书 1 acme.sh --issue -d"><meta itemprop="datePublished" content="2021-10-13T23:20:07+08:00" />
+<meta itemprop="dateModified" content="2021-10-13T23:20:07+08:00" />
+<meta itemprop="wordCount" content="215">
+<meta itemprop="keywords" content="服务器,部署,https," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用acme.sh申请certbot免费https证书"/>
+<meta name="twitter:description" content="安装acme.sh到用户目录 1 curl https://get.acme.sh | sh -s email=my@example.com 设置别名 1 alias acme.sh=~/.acme.sh/acme.sh 生成证书，由于我已经运行了一个项目，直接让读取nginx的配置文件来生成证书 1 acme.sh --issue -d"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Gru</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Gru</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用acme.sh申请certbot免费https证书</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-10-13 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"> 服务器 </a>
+            </div>
+          <span class="more-meta"> 约 215 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <ol>
+<li>
+<p>安装acme.sh到用户目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> curl  https://get.acme.sh | sh -s email=my@example.com
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>设置别名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">alias acme.sh=~/.acme.sh/acme.sh
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>生成证书，由于我已经运行了一个项目，直接让读取nginx的配置文件来生成证书</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">acme.sh --issue -d you_domain.com --nginx
+</code></pre></td></tr></table>
+</div>
+</div><p>运行完成之后，会在acme.sh目录下面创建如下的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> Your cert is in: ~/.acme.sh/you_domain/you_domain.cer
+ Your cert key is in: ~/.acme.sh/you_domain/you_domain.key
+ The intermediate CA cert is in: ~/.acme.sh/you_domain/ca.cer
+ And the full chain certs is there: ~/.acme.sh/you_domain/fullchain.cer
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装证书</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">acme.sh --install-cert -d you_domain \
+--key-file       /path/to/keyfile/in/nginx/key.pem  \
+--fullchain-file /path/to/fullchain/nginx/cert.pem \
+--reloadcmd     &#34;service nginx force-reload&#34;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>启用证书自动升级</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">acme.sh --upgrade --auto-upgrade 0
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在Nginx中为项目启用https</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+ <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+ <span class="kn">server_name</span> <span class="s">your_domain</span><span class="p">;</span>
+
+ <span class="kn">ssl_certificate</span> <span class="s">/path/to/fullchain/nginx/cert.pem</span><span class="p">;</span>
+ <span class="kn">ssl_certificate_key</span> <span class="s">/path/to/keyfile/in/nginx/key.pem</span><span class="p">;</span>
+ <span class="kn">ssl_session_timeout</span> <span class="mi">5m</span><span class="p">;</span>
+ <span class="kn">ssl_ciphers</span> <span class="s">ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4</span><span class="p">;</span>
+ <span class="kn">ssl_protocols</span> <span class="s">TLSv1</span> <span class="s">TLSv1.1</span> <span class="s">TLSv1.2</span><span class="p">;</span>
+ <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+ <span class="kn">....</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">莫金华</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+          <a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>
+          <a href="/tags/https/">https</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/redis/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Centos7.8 安装Redis6</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/server/">
+            <span class="next-text nav-default">Centos中部署Laravel项目配置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/https/" class="leancloud_visitors" data-flag-title="使用acme.sh申请certbot免费https证书">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'UaB0kt0HdEOYHUVBSX9f2mad-gzGzoHsz',
+        appKey: 'hjb4lhsvPl0vgChGJ76Pxuw4',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:mojinhua@outlook.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/mojiajuzi" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.zhihu.com/people/mo-jin-hua" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://space.bilibili.com/221726228" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://blog.tsecloud.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>莫金华</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
