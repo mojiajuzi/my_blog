@@ -6,9 +6,18 @@
     <description>Recent content in 蓝牙 on 我可是要带娃看海贼王的男人</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Dec 2021 23:06:53 +0800</lastBuildDate><atom:link href="http://blog.tsecloud.cn/tags/%E8%93%9D%E7%89%99/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Dec 2021 21:27:08 +0800</lastBuildDate><atom:link href="http://blog.tsecloud.cn/tags/%E8%93%9D%E7%89%99/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>电子面单打印（一）：连接蓝牙打印机</title>
+      <title>微信小程序使用CPCL指令打印电子面单（二）：连接蓝牙打印机</title>
+      <link>http://blog.tsecloud.cn/post/bluetooth_tow/</link>
+      <pubDate>Fri, 10 Dec 2021 21:27:08 +0800</pubDate>
+      
+      <guid>http://blog.tsecloud.cn/post/bluetooth_tow/</guid>
+      <description>在项目的开发过程中需要打印一联快递电子面单，这里使用微信小程序中的蓝牙硬件能力使用CPCL指令驱动蓝牙打印机， 该文章总共有三篇，分别是 Part 1 搜</description>
+    </item>
+    
+    <item>
+      <title>微信小程序使用CPCL指令打印电子面单（一）：搜索蓝牙打印机</title>
       <link>http://blog.tsecloud.cn/post/bluetooth/</link>
       <pubDate>Sun, 05 Dec 2021 23:06:53 +0800</pubDate>
       
