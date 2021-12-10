@@ -1,5 +1,5 @@
 ---
-title: "微信小程序使用CPCL指令打印电子面单（一）：连接蓝牙打印机"
+title: "微信小程序使用CPCL指令打印电子面单（一）：搜索蓝牙打印机"
 date: 2021-12-05T23:06:53+08:00
 draft: false
 tags: ["微信小程序","电子面单","蓝牙","连接"]
@@ -10,8 +10,8 @@ categories: ["小程序","蓝牙"]
 在项目的开发过程中需要打印一联快递电子面单，这里使用微信小程序中的蓝牙硬件能力使用CPCL指令驱动蓝牙打印机，
 该文章总共有三篇，分别是
 
-- Part 1 搜索蓝牙设备
-- Part 2 连接蓝牙设备
+- [Part 1 搜索蓝牙设备](https://blog.tsecloud.cn/post/bluetooth/)
+- [Part 2 连接蓝牙设备](https://blog.tsecloud.cn/post/bluetooth_tow)
 - Part 3 构建CPCL指令并打印电子面单
 
 # 搜索蓝牙设备
